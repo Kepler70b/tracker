@@ -1,19 +1,19 @@
-import './ExpenseItem.css'
-import './ExpenseDate.css'
+import './ScheduleItem.css'
+import './ScheduleDate.css'
 
 const ExpenseItem=(props)=>{
     return(
-        <>
+        <>  
             <div className='expense-item'>
                 <div className='expense-item__description'>
-                    <div className='expense-date'>
-                        {props.date}
+                    <div className='expense-item__title'>
+                        {props.title}
                     </div>
                     <h2>
-                        {props.title}
-                    </h2>
-                    <div className='expense-item__price'>
                         {props.description}
+                    </h2>
+                    <div className='expense-date'>
+                        {props.date}
                     </div>
                 </div>
             </div>

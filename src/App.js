@@ -1,33 +1,34 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Navigate from "./components/navbarComponent";
-import Expense from "./components/Expenses";
+import Expense from "./components/Schedules";
 import React, { useState } from "react";
+import NewExpense from "./components/NewSchedule";
 
 const INITIAL = [
   {
     id: "e1",
-    title: "Amar",
-    date: "4",
-    description: "idk",
+    title: "Cycling",
+    date: new Date("2020", "2", "10").toLocaleDateString("en-GB"),
+    description: "went 500kms on  a stretch without breaks",
   },
   {
     id: "e2",
-    title: "Akbar",
-    date: "2",
-    description: "idk",
+    title: "Trekking",
+    date: new Date("2019", "9", "19").toLocaleDateString("en-GB"),
+    description: "climbed 20 mountains ",
   },
   {
     id: "e3",
-    title: "Anthony",
-    date: "0",
-    description: "idk",
+    title: "Swimming",
+    date: new Date("2020", "12", "20").toLocaleDateString("en-GB"),
+    description: "crossed the Indian Ocean without clothes",
   },
   {
     id: "e4",
-    title: "Anon",
-    date: "-",
-    description: "idk",
+    title: "Reading",
+    date: new Date("2022", "3", "28").toLocaleDateString("en-GB"),
+    description: "read a whole library in 15mins",
   },
 ];
 
@@ -41,13 +42,13 @@ function App() {
       return [...prev, expense];
     });
   };
-
   return (
     <>
       <header>
         <Navigate />
       </header>
-      <Expense items={expenses} onAddDetails={addDetailsHandler} />
+      <NewExpense onAddDetails={addDetailsHandler} />
+      <Expense items={expenses} />
 
       {/* <div className="position-absolute top-50 start-50 translate-middle">
         <span

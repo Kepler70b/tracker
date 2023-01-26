@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
-import './NewExpense.css'
+import React, { useState } from 'react'
+import './ScheduleForm.css'
 
-const NewExpense= (props)=>{
-
+const ScheduleForm=(props)=>{
+    
+    
     const [userInput, setUserInput]=useState({
         enteredTitle:'',
         enteredDate:'',
@@ -29,10 +30,13 @@ const NewExpense= (props)=>{
     }
     const formSubmit=(event)=>{
         event.preventDefault();
+        if(!userInput.enteredTitle || !userInput.enteredDate || !userInput.enteredDescription ){
+            return
+        }
 
         const scheduleDeets={
             title: userInput.enteredTitle,
-            date: new Date(userInput.enteredDate).getFullYear(),
+            date: new Date(userInput.enteredDate).toLocaleDateString("en-GB"),
             description: userInput.enteredDescription
         }
         // console.log(scheduleDeets)
@@ -45,11 +49,19 @@ const NewExpense= (props)=>{
             }
         })
     }
+    const handleCancel=()=>{
+        setUserInput(()=>{
+            return {
+            enteredDate:'',
+            enteredDescription:'',
+            enteredTitle:''
+            }
+        })
+        props.showState()
+    }
 
-    return  (
-        <>
-            <div className='new-expense'>
-            <form onSubmit={formSubmit}>
+    return(
+        <form onSubmit={formSubmit}>
                 <div className="new-expense__controls">
                     <div className="new-expense__control">
                         <label htmlFor="expense_title">Title</label>
@@ -80,14 +92,12 @@ const NewExpense= (props)=>{
                     </div>
                 </div>
                 <div className='new-expense__actions'>
+                    <button onClick={handleCancel} type='button'>Cancel</button>
                     <button type='submit'>Add Details</button>
-
                 </div>
+                
             </form>
-            </div>
-        </>
-
     )
-
 }
-export default NewExpense;
+
+export default ScheduleForm;
